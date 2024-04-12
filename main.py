@@ -18,6 +18,28 @@ def read_population_data(file_name):
     # Повертаємо словник з даними про популяцію
     return population_data
 
+def calculate_population_change(population_data):
+    # Створюємо порожній словник для зберігання змін популяції
+    population_change = {}
+    # Проходимося по кожній країні та її даним про популяцію
+    for country, data in population_data.items():
+        # Сортуємо роки у порядку зростання
+        years = sorted(data.keys())
+        change = {}
+        # Проходимося по кожному році, обчислюємо зміну популяції
+        for i in range(1, len(years)):
+            prev_year = years[i - 1]
+            curr_year = years[i]
+            prev_population = data[prev_year]
+            curr_population = data[curr_year]
+            population_difference = curr_population - prev_population
+            # Додаємо зміну до словника
+            change[curr_year] = population_difference
+        # Додаємо словник зі змінами популяції для країни до загального словника
+        population_change[country] = change
+    # Повертаємо словник зі змінами популяції
+    return population_change
+
 def main():
     # Запитуємо у користувача назву файлу
     file_name = input("Введіть назву файлу з даними про популяцію (з розширенням .txt): ")
