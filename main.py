@@ -42,7 +42,7 @@ def calculate_population_change(population_data):
 
 def main():
     # Запитуємо у користувача назву файлу
-    file_name = input("Введіть назву файлу з даними про популяцію (з розширенням .txt): ")
+    file_name = "population.txt"
     try:
         # Зчитуємо дані з файлу
         population_data = read_population_data(file_name)
