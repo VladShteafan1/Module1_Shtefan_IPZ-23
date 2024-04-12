@@ -1,3 +1,23 @@
+def read_population_data(file_name):
+    # Створюємо порожній словник для зберігання даних про популяцію
+    population_data = {}
+    # Відкриваємо файл для читання
+    with open(file_name, 'r') as file:
+        # Проходимося по кожному рядку у файлі
+        for line in file:
+            # Розбиваємо рядок на компоненти: країна, рік, популяція
+            country, year, population = line.strip().split(',')
+            # Перетворюємо рік і популяцію у цілі числа
+            year = int(year)
+            population = int(population)
+            # Якщо країна відсутня у словнику, створюємо для неї новий словник
+            if country not in population_data:
+                population_data[country] = {}
+            # Додаємо популяцію для відповідного року
+            population_data[country][year] = population
+    # Повертаємо словник з даними про популяцію
+    return population_data
+
 def main():
     # Запитуємо у користувача назву файлу
     file_name = input("Введіть назву файлу з даними про популяцію (з розширенням .txt): ")
